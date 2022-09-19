@@ -1,9 +1,10 @@
 import React from 'react'
+import Signup from '../components/Signup'
 
 const FormPage = () => {
   return (
-    <div>
-      Form
+    <div className='form-container'>
+        <Signup />
     </div>
   )
 }
