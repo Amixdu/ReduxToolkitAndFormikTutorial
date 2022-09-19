@@ -1,14 +1,13 @@
 import './App.css';
-import Navbar from './components/NavBar'
-import CartContainer from './components/CartContainer';
 import { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { calculateTotals, getCartItems } from './features/cart/cartSlice';
-import Modal from './components/Modal';
+import { BrowserRouter, Route, Router, Routes } from 'react-router-dom'
+import FormPage from './pages/FormPage';
+import ReduxPage from './pages/ReduxPage';
 
 function App() {
   const { cartItems, isLoading } = useSelector((state) => state.cart)
-  const { isOpen } = useSelector((state) => state.modal)
   const dispatch = useDispatch()
 
   useEffect(() => {
@@ -29,11 +28,12 @@ function App() {
 
   return (
     <div>
-      <main>
-        {isOpen && <Modal />}
-        <Navbar />
-        <CartContainer />
-      </main>
+      <BrowserRouter>
+        <Routes>
+          <Route exact path="/" element={<ReduxPage />} />
+          <Route exact path="/form" element={<FormPage />} />
+        </Routes>
+      </BrowserRouter>
     </div>
   );
 }
